@@ -1,0 +1,8 @@
+{
+    "settings": {
+        // Enable/Disable Rome handling renames in the workspace. (Experimental)
+        "rome.rename": null
+    },
+    "command": ["${server_path}", "lsp-proxy"],
+    "selector": "source.js | source.ts | source.jsx | source.tsx | source.js.jsx | source.js.react | source.ts.react",
+}
