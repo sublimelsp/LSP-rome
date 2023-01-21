@@ -1,8 +1,11 @@
 {
+    "selector": "source.json | source.js | source.ts | source.jsx | source.tsx | source.js.jsx | source.js.react | source.ts.react",
     "settings": {
+        // The rome lsp server executable. If the path is relative, the workspace folder will be used as base path.
+        "rome.lspBin": null,
         // Enable/Disable Rome handling renames in the workspace. (Experimental)
-        "rome.rename": null
+        "rome.rename": null,
+        // Require a Rome configuration file to enable syntax errors, formatting and linting.
+        "rome.requireConfiguration": false,
     },
-    "command": ["${server_path}", "lsp-proxy"],
-    "selector": "source.js | source.ts | source.jsx | source.tsx | source.js.jsx | source.js.react | source.ts.react",
 }
