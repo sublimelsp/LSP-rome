@@ -6,43 +6,27 @@ import os
 import sublime
 
 
-PLATFORMS = {
+PACKAGE_NAMES = {
     'windows': {
-        'x64': {
-            'binary': '@rometools/cli-win32-x64/rome.exe',
-            'package': '@rometools/cli-win32-x64'
-        },
-        'arm64': {
-            'binary': '@rometools/cli-win32-arm64/rome.exe',
-            'package': '@rometools/cli-win32-arm64'
-        },
+        'x64': '@rometools/cli-win32-x64',
+        'arm64': '@rometools/cli-win32-arm64',
     },
     'osx': {
-        'x64': {
-            'binary': '@rometools/cli-darwin-x64/rome',
-            'package': '@rometools/cli-darwin-x64'
-        },
-        'arm64': {
-            'binary': '@rometools/cli-darwin-arm64/rome',
-            'package': '@rometools/cli-darwin-arm64'
-        },
+        'x64': '@rometools/cli-darwin-x64',
+        'arm64': '@rometools/cli-darwin-arm64',
     },
     'linux': {
-        'x64': {
-            'binary': '@rometools/cli-linux-x64/rome',
-            'package': '@rometools/cli-linux-x64'
-        },
-        'arm64': {
-            'binary': '@rometools/cli-linux-arm64/rome',
-            'package': '@rometools/cli-linux-arm64'
-        },
+        'x64': '@rometools/cli-linux-x64',
+        'arm64': '@rometools/cli-linux-arm64',
     },
 }
 
-RESOLVED_PLATFORM = PLATFORMS.get(sublime.platform(), {}).get(sublime.arch(), {})  # type: Optional[Dict[str, str]]
+RESOLVED_PACKAGE_NAME = PACKAGE_NAMES.get(sublime.platform(), {}).get(sublime.arch())  # type: Optional[str]
 
 def resolve_platform_binary() -> Optional[str]:
-    return RESOLVED_PLATFORM.get('binary') if RESOLVED_PLATFORM else None
+    if not RESOLVED_PACKAGE_NAME:
+        return None
+    return os.path.join(RESOLVED_PACKAGE_NAME, ('rome.exe' if sublime.platform() == 'windows' else 'rome'))
 
 
 class LspRomePlugin(NpmClientHandler):
@@ -85,11 +69,10 @@ class LspRomePlugin(NpmClientHandler):
 
     @classmethod
     def _get_workspace_dependency(cls, workspace_folders: List[WorkspaceFolder]) -> Optional[str]:
-        if not RESOLVED_PLATFORM:
+        binary_name = resolve_platform_binary()
+        if not RESOLVED_PACKAGE_NAME or not binary_name:
             return
-        package_name = RESOLVED_PLATFORM['package']
-        package_json = os.path.join(package_name, 'package.json');
-        binary_name = os.path.join(package_name, ('rome.exe' if 'win32' in package_name else 'rome'))
+        package_json = os.path.join(RESOLVED_PACKAGE_NAME, 'package.json');
         for folder in workspace_folders:
             package_json_path = os.path.join(folder.path, 'node_modules', package_json)
             binary_path = os.path.join(folder.path, 'node_modules', binary_name)
