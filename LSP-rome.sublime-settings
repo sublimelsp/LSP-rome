@@ -1,5 +1,6 @@
 {
-    "selector": "source.json | source.js | source.ts | source.jsx | source.tsx | source.js.jsx | source.js.react | source.ts.react",
+    // Also supports source.json but is not able to tell if file is jsonc without "$schema" present.
+    "selector": "source.js | source.ts | source.jsx | source.tsx | source.js.jsx | source.js.react | source.ts.react",
     "settings": {
         // The rome lsp server executable. If the path is relative, the workspace folder will be used as base path.
         "rome.lspBin": null,
