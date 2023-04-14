@@ -1,5 +1,6 @@
-from LSP.plugin import ClientConfig, WorkspaceFolder
-from LSP.plugin.core.typing import Dict, List, Optional
+from LSP.plugin import ClientConfig, Response, WorkspaceFolder
+from LSP.plugin.core.protocol import InitializeResult
+from LSP.plugin.core.typing import List, Optional
 from lsp_utils import NpmClientHandler
 import json
 import os
@@ -22,6 +23,7 @@ PACKAGE_NAMES = {
 }
 
 RESOLVED_PACKAGE_NAME = PACKAGE_NAMES.get(sublime.platform(), {}).get(sublime.arch())  # type: Optional[str]
+
 
 def resolve_platform_binary() -> Optional[str]:
     if not RESOLVED_PACKAGE_NAME:
@@ -72,7 +74,7 @@ class LspRomePlugin(NpmClientHandler):
         binary_name = resolve_platform_binary()
         if not RESOLVED_PACKAGE_NAME or not binary_name:
             return
-        package_json = os.path.join(RESOLVED_PACKAGE_NAME, 'package.json');
+        package_json = os.path.join(RESOLVED_PACKAGE_NAME, 'package.json')
         for folder in workspace_folders:
             package_json_path = os.path.join(folder.path, 'node_modules', package_json)
             binary_path = os.path.join(folder.path, 'node_modules', binary_name)
@@ -86,9 +88,18 @@ class LspRomePlugin(NpmClientHandler):
                     if len(version_tuple) == 3 and version_tuple < (0, 9, 0):
                         continue
                 return binary_path
-            except:
+            except Exception:
                 continue
         return None
+
+    def on_server_response_async(self, method: str, response: Response) -> None:
+        if method == 'initialize':
+            result = response.result  # type: InitializeResult
+            version = result.get('serverInfo', {}).get('version')
+            if version:
+                session = self.weaksession()
+                if session:
+                    session.set_config_status_async(version)
 
 
 def plugin_loaded() -> None:
