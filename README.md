@@ -38,7 +38,15 @@ To format a text range, select the text you want to format, open the _Command Pa
 
 ### Fix on save
 
-To enable fix on save, open `Preferences: LSP Settings` from the _Command Palette_ and set or edit the `lsp_code_actions_on_save: { "quickfix.rome": true }` option.
+To enable fix on save, open `Preferences: LSP Settings` from the _Command Palette_ and set:
+
+```json
+{
+    "lsp_code_actions_on_save": {
+        "quickfix.rome": true
+    }
+}
+```
 
 ### Imports Sorting [Experimental]
 
