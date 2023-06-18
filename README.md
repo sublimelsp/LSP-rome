@@ -36,14 +36,6 @@ To format an entire document, open the _Command Palette_ (<kbd>Ctrl</kbd>/<kbd t
 
 To format a text range, select the text you want to format, open the _Command Palette_ (<kbd>Ctrl</kbd>/<kbd title="Cmd">⌘</kbd>+<kbd title="Shift">⇧</kbd>+<kbd>P</kbd>), and select `LSP: Format Selection`.
 
-### Format on save
-
-To enable format on save, open the `Preferences: LSP Settings` from the _Command Palette_ and set or edit the `lsp_code_actions_on_save` option:
-
-```json
-s
-```
-
 ### Fix on save
 
 To enable fix on save, open `Preferences: LSP Settings` from the _Command Palette_ and set or edit the `lsp_code_actions_on_save: { "quickfix.rome": true }` option.
