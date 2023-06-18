@@ -81,7 +81,7 @@ class LspRomePlugin(NpmClientHandler):
             if not os.path.isfile(package_json_path) or not os.path.isfile(binary_path):
                 continue
             try:
-                with open(package_json_path , 'r') as fp:
+                with open(package_json_path, 'r') as fp:
                     version = json.loads(fp.read())['version']
                     # Ignore versions lower than 0.9.0 as those didn't embed LSP server.
                     version_tuple = tuple(map(int, (version.split('.'))))
