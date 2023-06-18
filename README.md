@@ -17,7 +17,7 @@ The package supports JavaScript and TypeScript files.
 
 Open the configuration file using the Command Palette `Preferences: LSP-rome Settings` command or from the Sublime menu.
 
-> Note
+> **Note**
 > By default the package requires a Rome configuration file (`rome.json`) in the root of the project to enable syntax errors, formatting and linting. This can be changed through the `rome.requireConfiguration` option in `Preferences: LSP-rome Settings`.
 
 ## Rome Resolution
