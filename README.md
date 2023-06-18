@@ -1,6 +1,6 @@
 # LSP-rome
 
-> [Rome](https://rome.tools/) unifies your development stack by combining the functionality of separate tools. It uses a single configuration file, has fantastic performance, and works with any stack. This package enables Sublime Text integration so that you can:
+[Rome](https://rome.tools/) unifies your development stack by combining the functionality of separate tools. It uses a single configuration file, has fantastic performance, and works with any stack. This package enables Sublime Text integration so that you can:
  - Format files on save or when issuing the `LSP: Format Document` command
  - See linting hints while you type and apply code fixes
  - Perform refactors
@@ -17,7 +17,8 @@ The package supports JavaScript and TypeScript files.
 
 Open the configuration file using the Command Palette `Preferences: LSP-rome Settings` command or from the Sublime menu.
 
-> NOTE: By default the package requires a Rome configuration file (`rome.json`) in the root of the project to enable syntax errors, formatting and linting. This can be changed through the `rome.requireConfiguration` option in `Preferences: LSP-rome Settings`.
+> Note:
+> By default the package requires a Rome configuration file (`rome.json`) in the root of the project to enable syntax errors, formatting and linting. This can be changed through the `rome.requireConfiguration` option in `Preferences: LSP-rome Settings`.
 
 ## Rome Resolution
 
@@ -51,7 +52,7 @@ To enable fix on save, open `Preferences: LSP Settings` from the _Command Palett
 
 Rome has experimental support for imports sorting through the "Organize Imports" code action. This action is accessible through the _Command Palette_ (<kbd>Ctrl</kbd>/<kbd title="Cmd">⌘</kbd>+<kbd title="Shift">⇧</kbd>+<kbd>P</kbd>) by selecting `LSP-rome: Organize Imports`.
 
-Currently this functionality needs to be explicitly enabled in the `rome.json` configuration file:
+Currently, this functionality needs to be explicitly enabled in the `rome.json` configuration file:
 
 ```json
 {
