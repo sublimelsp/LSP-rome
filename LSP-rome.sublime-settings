@@ -9,6 +9,6 @@
         // Enable/Disable Rome handling renames in the workspace. (Experimental)
         "rome.rename": null,
         // Require a Rome configuration file to enable syntax errors, formatting and linting.
-        "rome.requireConfiguration": false,
+        "rome.requireConfiguration": true,
     },
 }

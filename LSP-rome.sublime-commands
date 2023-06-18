@@ -7,4 +7,11 @@
             "default": "// Settings in here override those in \"LSP-rome/LSP-rome.sublime-settings\"\n\n{\n\t$0\n}\n"
         }
     },
+    {
+        "caption": "LSP-rome: Organize Imports",
+        "command": "lsp_code_actions",
+        "args": {
+            "only_kinds": ["source.organizeImports.rome"],
+        }
+    },
 ]
