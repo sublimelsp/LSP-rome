@@ -1,5 +1,8 @@
 # LSP-rome
 
+> [!WARNING]  
+> Rome was superseded by Biome and is no longer updated. Use [LSP-biome](https://github.com/sublimelsp/LSP-biome) instead.
+
 [Rome](https://rome.tools/) unifies your development stack by combining the functionality of separate tools. It uses a single configuration file, has fantastic performance, and works with any stack. This package enables Sublime Text integration so that you can:
  - Format files on save or when issuing the `LSP: Format Document` command
  - See linting hints while you type and apply code fixes
